@@ -33,10 +33,10 @@ function fetchWeather(city){
 
         if(weatherData && weatherData.main && weatherData.main.temp){
           const celciusTemp = (weatherData.main.temp - 32) * 5/9; 
-          health("SUCCESS", `The temperature in ${city} is ${celciusTemp.toFixed(2)} Celcius`);
+          health("API CALL", "SUCCESS", `The temperature in ${city} is ${celciusTemp.toFixed(2)} Celcius`);
           console.log(chalk.green(`The temperature in ${city} is ${celciusTemp.toFixed(2)} Celcius`));
         } else {
-          health("ERROR", "You are not suscribed to this API")
+          health("API CALL", "ERROR", "You are not suscribed to this API")
           console.log(chalk.red("Weather data is not available"));
         }
       });
