@@ -7,12 +7,12 @@ const __dirname = dirname(__filename);
 
 function health(type, message){
   const createdAt = new Date();
-  const folderPath = path.join(__dirname, "/monitor/logs");
-  const filePath = path.join(__dirname, "/monitor/logs/health.txt");
+  const folderPath = path.join(__dirname, "./monitor");
+  const filePath = path.join(__dirname, "./monitor/health.txt");
   
   // Check if folder and file data exists, if does not exists create a new one
-  fs.exists(folderPath, (exist) => !exist && fs.mkdirSync(folderPath, {recursive: true}));
-  fs.exists(filePath, (exist) => !exist ? fs.writeFileSync(filePath, "", "utf-8"): console.log("File found")); 
+  if(!fs.existsSync(folderPath)) fs.mkdirSync(folderPath, { recursive: true });
+  if(!fs.existsSync(filePath)) fs.writeFileSync(filePath, "", "utf-8");
   
   // Write and re-write the log information
   if(filePath){
